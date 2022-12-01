@@ -1,5 +1,14 @@
 package main
 
-func main() {
+import (
+	"AOC2022/day01"
+	"fmt"
+)
 
+func main() {
+	data, err := day01.DayOne()
+	if err != nil {
+		fmt.Println("Error data")
+	}
+	fmt.Println(data)
 }
