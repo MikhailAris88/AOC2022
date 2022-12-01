@@ -6,9 +6,9 @@ import (
 )
 
 func main() {
-	data, err := day01.DayOne()
+	answer, err := day01.DayOne()
 	if err != nil {
 		fmt.Println("Error data")
 	}
-	fmt.Println(data)
+	fmt.Println(answer)
 }
