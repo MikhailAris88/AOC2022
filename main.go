@@ -1,14 +1,13 @@
 package main
 
 import (
-	"AOC2022/day01"
+	"AOC2022/day02"
 	"fmt"
 )
 
 func main() {
-	answer, err := day01.DayOne()
+	err := day02.DayTwo()
 	if err != nil {
 		fmt.Println("Error data")
 	}
-	fmt.Println(answer)
 }
