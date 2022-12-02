@@ -1,7 +1,7 @@
 package main
 
 import (
-	"AOC2022/day02"
+	"AOC2022/domain/day02"
 	"fmt"
 )
 
