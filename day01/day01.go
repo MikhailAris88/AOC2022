@@ -1,63 +1,40 @@
 package day01
 
 import (
+	"AOC2022/src"
 	"fmt"
-	"io/ioutil"
-	"os"
 	"sort"
 	"strconv"
-	"strings"
 )
 
-type Elf struct {
-	calories int
-}
-
 func DayOne() (string, error) {
-	file, err := os.Open("day01/input.txt")
+	input, err := src.GetData()
 	if err != nil {
 		return "", err
 	}
-	defer file.Close()
-	data, err := ioutil.ReadAll(file)
+	data, err := input.Strings(2022, 1)
 	if err != nil {
 		return "", err
 	}
-	s := strings.Split(string(data), "\n")
-	elfs := make([]*Elf, 0)
-	var colories int
-	i := 1
-	s = append(s, "")
-	for _, val := range s {
-		col, err := strconv.Atoi(val)
-		colories += col
+	var allElfCalories []int
+	var indexELf int
+	var oneElfCalories int
+	for _, val := range data {
+		colories, err := strconv.Atoi(val)
 		if err != nil {
-			e := &Elf{
-				calories: colories,
-			}
-			elfs = append(elfs, e)
-			i++
-			colories = 0
-			continue
+			allElfCalories = append(allElfCalories, oneElfCalories)
+			indexELf++
+			oneElfCalories = 0
 		}
+		oneElfCalories += colories
 	}
-	max := 0
-	maxElf := new(Elf)
-	for _, val := range elfs {
-		if val.calories > max {
-			max = val.calories
-			maxElf = val
-		}
-	}
-
-	sliceInts := make([]int, 0)
-	for _, v := range elfs {
-		sliceInts = append(sliceInts, v.calories)
-	}
-
-	sort.Slice(sliceInts, func(i, j int) bool {
-		return sliceInts[i] > sliceInts[j]
+	sort.Slice(allElfCalories, func(i, j int) bool {
+		return allElfCalories[i] > allElfCalories[j]
 	})
-
-	return fmt.Sprintf("max colories = %d, best3 = %d", maxElf.calories, sliceInts[0]+sliceInts[1]+sliceInts[2]), nil
+	var bestThree int
+	for i := 0; i < 3; i++ {
+		bestThree += allElfCalories[i]
+	}
+	answer := fmt.Sprintf("max one elf calories = %d, 3 best elf = %d", allElfCalories[0], bestThree)
+	return answer, nil
 }
