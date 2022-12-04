@@ -34,7 +34,6 @@ func partOne(data []string) int {
 				index := strings.IndexAny(alphabet, string(s)) + 1
 				sum += index
 				break
-
 			}
 		}
 	}
@@ -45,10 +44,9 @@ func partTwo(data []string) int {
 	var sum int
 	for i := 0; i < len(data); i += 3 {
 		for _, v := range data[i] {
-			str := string(v)
-			if strings.Contains(data[i+1], string(str)) {
-				if strings.Contains(data[i+2], string(str)) {
-					sum += 1 + strings.Index(alphabet, string(str))
+			if strings.Contains(data[i+1], string(v)) {
+				if strings.Contains(data[i+2], string(v)) {
+					sum += 1 + strings.Index(alphabet, string(v))
 					break
 				}
 			}
